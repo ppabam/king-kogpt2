@@ -1,10 +1,6 @@
-service: "service:PresidentGPTEndpoint" # 수정한 클래스 이름으로 변경
+service: "service:PresidentGPTEndpoint"
 labels:
   owner: tom
-  project: kogpt2-president
-python:
-  packages:
-    - torch
-    - transformers
-    - bentoml
-    - pydantic  # pydantic을 추가해줍니다.
+  project: co2rocket
+models:
+  - president_gpt_endpoint:ojvlm5crs2odcaav

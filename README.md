@@ -103,7 +103,8 @@ Next steps:
 
 * Push to BentoCloud with `bentoml push`:
     $ bentoml push president_gpt_endpoint:oy6nujsro6odcaav 
-king-kogpt2-3.11 👻  king-kogpt2  ↱ 0.3/BentoML ±  pdm run bentoml serve president_gpt_endpoint:oy6nujsro6odcaav
+
+$ pdm run bentoml serve president_gpt_endpoint:oy6nujsro6odcaav
 /home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
 /home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/bentoml/io.py:7: BentoMLDeprecationWarning: `bentoml.io` is deprecated since BentoML v1.4 and will be removed in a future version. Please upgrade to new style IO types instead.
@@ -246,4 +247,50 @@ $ curl -X 'POST' \
   "full_generated_text": "<|박근혜|> 6.25전쟁 당시 월남전선에서 우리 군과 함께 싸우는 고귀한 생명을 바친 혈맹의 전우들입니다.우리는 이처럼 강인한 정신력과 불굴적인 조국애로 오늘의 이 나라를 키워 냈으며, 지난 71년 남북정상회담으로 화해와 협력 속에 공동 번영의 시대를 활짝 열었다는 것을 높이 평가합니다. 그리고 전쟁의 폐허 속에서 민주주의를 꽃피웠고, 불과 20여년의 짧은 기간에 세계 10위의 경제 규모로 성장했을 뿐 아니라, 이제 세계의 인정을 받는 나라의 위치에 올라 섰습니다. 이러한 위업을 이룬 선열과 호국 영령, 국민 여러분을 비롯한 모든 참전 용사들을 추모하며, 본인은 온 국민이 보내는 뜨거운 감사의 뜻을 표하는 바입니다.\n\n<|전두환|>"
 }
 
+```
+
+### BentoML Cloud
+![Image](https://github.com/user-attachments/assets/c4f9143c-542a-4a4d-9a1a-c685defe6c5b)
+
+```bash
+$ bentoml build
+
+$ bentoml models list
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+ Tag                                        Module                Size        Creation Time       
+ president_gpt2_finetuned:6hzqjtcrn6odcaav  bentoml.transformers  479.12 MiB  2025-06-25 11:56:09
+
+$ bentoml  list
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+ Tag                                      Size        Model Size  Creation Time       
+ president_gpt_endpoint:ojvlm5crs2odcaav  482.60 MiB  479.12 MiB  2025-06-25 16:31:47 
+ president_gpt_endpoint:kj4rxpsrssodcaav  482.60 MiB  0.00 B      2025-06-25 16:16:34 
+ president_gpt_endpoint:nzy3g4srsoodcaav  482.60 MiB  0.00 B      2025-06-25 16:10:11 
+ hello-bento:7oq77gsrqsodcaav             180.41 KiB  0.00 B      2025-06-25 14:26:45 
+ president_gpt_endpoint:oy6nujsro6odcaav  482.57 MiB  0.00 B      2025-06-25 12:49:58 
+ text_generation:4ilkr6srowodcaav         482.56 MiB  0.00 B      2025-06-25 12:38:41
+
+$ bentoml deploy president_gpt_endpoint:kj4rxpsrssodcaav -n president-gpt
+
+$ bentoml deployment update --bento president_gpt_endpoint:ojvlm5crs2odcaav president-gpt
+
+$ curl -s -X POST \
+    'https://president-gpt-cdba3c86.mt-guc1.bentoml.ai/generate' \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "input_data": {
+            "max_length": 128,
+            "president_name": "전두환",
+            "prompt_text": "광주는"
+        }
+    }' 
+| jq
+
+{
+  "president_name": "전두환",
+  "prompt_text": "광주는",
+  "full_generated_text": "<|전두환|> 광주는 이제 대한민국을 대표하는 민주인권도시임이 더욱 자랑스럽습니다. 그동안 애써 온 광주시민과 관계자 여러분의 노고를 치하하며, 무궁한 발전과 번영을 기원합니다. 감사합니다.\n\n<|김영삼|> <unk> \n존경하는 국민여러분, 그리고 국회의원 및 자치단체장ᆞ구청장, 내외귀빈과 당원동지 등 2천5백만 의원 모두는 2002년 새 공화국의 시대적 소명을 깊이 인식하고 오늘의 이 뜻깊은 자리를 마련해 주신 것에 대해 심심한 감사를 드립니다. 아울러 21세기 국가발전대책의 하나로 추진중인 선진화, 세계화작업이 성공적으로 마무리되면서 보람찬 결실을 맺도록 적극 성원해 주시기를 부탁드리고 싶습니다.\n"
+}
 ```
