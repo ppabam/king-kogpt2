@@ -28,4 +28,5 @@ data = [
 ]
 finetuning = [
     "datasets>=3.6.0",
+    "tensorboard>=2.19.0",
 ]
