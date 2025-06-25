@@ -163,4 +163,85 @@ $ curl -X 'POST' \
   "prompt_text": "올림픽",
   "full_generated_text": "<|전두환|> 올림픽에서도 금메달을 딴 우리 선수들이 자랑스럽고 마음 든든하다는 생각이 듭니다. 여러분이 이 영광을 함께 누리고 나갑시다. ‘선진’이라는 말의 의미를 다시 한 번 되새기면서 선수 모두의 건투를 기원합니다. 감사합니다.\n\n<|김영삼|> 친애하는 국민여러분!오늘, 우리는 광복 68주년을 맞이했습니다.이것은 민족사의 장래를 위해 매우 의미있게 평가할 만하다고 생각하며, 또한 우리의 앞날을 위해서도 반드시 성취할 것을 확신하기 때문입니다.그동안 정부는 광복과 동시에 수립된 첫 정부로서 건국 후 최초의 민주적 정부를 완성시켰으며, 지난 87년 대통령 선거와 1995년 대통령선거 등 모든 과정을 민주적으로 치렀으며, 그 과정에서"
 }
+
+$ curl -X 'POST' \
+'http://localhost:3000/generate' \
+-H 'accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+"input_data": {
+  "president_name": "이승만",  
+  "prompt_text": "6.25",  
+  "max_length": 128
+}
+}' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1724  100  1625  100    99   1544     94  0:00:01  0:00:01 --:--:--  1640
+{
+  "president_name": "이승만",
+  "prompt_text": "6.25",
+  "full_generated_text": "<|이승만|> 6.25 전쟁의 승전 후로 우리는 많은 희생을 치러야 했읍니다.\n\n60년 동안이나 미군의 주둔을 거부하고 공산군에게 참전한 우리 동포들은 그 분들이야말로 가장 아끼고 사랑하는 친우라 아니할 수 없습니다.\n.그것이 얼마나 귀중한 것인가를 되새겨보고 다시는 동족 상잔의 전쟁을 되풀이해서는 안되겠다는 결의를 새로이 하여야 합니다.\n4. 지난 시대의 과오를 거울하여 국민 전체의 공복으로서의 책임과 의무를 다해야 하겠습니다.\n<unk>일찍이 민족 사상 처음으로 침략자들로부터 우리의 독립과 자유를 수호하기 위하여 고귀한 피를 흘린 젊은 호국 전사로서 구국 의 길에 앞장선 이 세대와 오늘에도 다시 한"
+}
+
+$ curl -X 'POST' \
+'http://localhost:3000/generate' \
+-H 'accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+"input_data": {
+  "president_name": "문제인", 
+  "prompt_text": "6.25",  
+  "max_length": 128
+}
+}' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1668  100  1569  100    99   1498     94  0:00:01  0:00:01 --:--:--  1593
+{
+  "president_name": "문제인",
+  "prompt_text": "6.25",
+  "full_generated_text": "<|문제인|> 6.25 참전 70주년을 맞아 대한민국 국가원수로는 최초로 국군의 날을 맞는 것을 진심으로 축하합니다. 한국전쟁 당시 참전한 용사들은 지금 대한민국을 지키고 자유와 민주주의를 지키기 위해 고귀한 희생을 하고 계십니다. 전우들의 희생에 깊이 감사드리며, 유가족께도 깊은 존경과 위로의 말씀을 드립니다.\n\n<|문재인|> 지난 12월 8일 정부가 발표한 ‘서민희망 3대 세제개편 방안’과 서민생활대책 세부 이행 전략을 보고 받습니다. 정부는 저소득계층 가구를 위한 맞춤형 지원방안을 마련하여 발표했습니다 .\n먼저, 기초연금과 치매보험 대상자를 확대하고 국민기초연금제도의 조기"
+}
+
+$ curl -X 'POST' \
+'http://localhost:3000/generate' \
+-H 'accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+"input_data": {
+  "president_name": "최규화", 
+  "prompt_text": "6.25",
+  "max_length": 128
+}
+}' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1815  100  1716  100    99   2008    115 --:--:-- --:--:-- --:--:--  2122
+{
+  "president_name": "최규화",
+  "prompt_text": "6.25",
+  "full_generated_text": "<|최규화|> 6.25 남침 때 우리 젊은이들은 낙동강 방어선을 넘어 압록강 두만강의 한강을 건너 북한에 들어갔습니다. 그 후 수많은 젊은이가 목숨을 걸고 적의 지하터널을 차단했습니다.\n \n한편으로는 경제발전을 위해 외국 기업가들이 우리나라에 와서 대규모 공사에 참여하기도 했습니다만, 한편으로는 ‘뉴지’사의 사옥을 철거하는 동시에 노동집약적인 경공업 위주의 산업 구조를 첨단산업에까지 바꾸어 놓았습니다. 이러한 변화와 발전의 과정에서 정부는 그동안 많은 노력을 기울여 왔고 앞으로도 더 큰 역할을 해 나가야 될 것이라고 생각합니다. 우리의 국력이 커지고 자원이 잘 확보되는 만큼 이에 따라 동북아의 물류와 안보에서도 우리가"
+}
+
+$ curl -X 'POST' \
+'http://localhost:3000/generate' \
+-H 'accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+"input_data": {
+  "president_name": "박근혜", 
+  "prompt_text": "6.25",
+  "max_length": 128
+}
+}' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1779  100  1680  100    99   1631     96  0:00:01  0:00:01 --:--:--  1727
+{
+  "president_name": "박근혜",
+  "prompt_text": "6.25",
+  "full_generated_text": "<|박근혜|> 6.25전쟁 당시 월남전선에서 우리 군과 함께 싸우는 고귀한 생명을 바친 혈맹의 전우들입니다.우리는 이처럼 강인한 정신력과 불굴적인 조국애로 오늘의 이 나라를 키워 냈으며, 지난 71년 남북정상회담으로 화해와 협력 속에 공동 번영의 시대를 활짝 열었다는 것을 높이 평가합니다. 그리고 전쟁의 폐허 속에서 민주주의를 꽃피웠고, 불과 20여년의 짧은 기간에 세계 10위의 경제 규모로 성장했을 뿐 아니라, 이제 세계의 인정을 받는 나라의 위치에 올라 섰습니다. 이러한 위업을 이룬 선열과 호국 영령, 국민 여러분을 비롯한 모든 참전 용사들을 추모하며, 본인은 온 국민이 보내는 뜨거운 감사의 뜻을 표하는 바입니다.\n\n<|전두환|>"
+}
+
 ```
