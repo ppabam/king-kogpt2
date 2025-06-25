@@ -53,3 +53,11 @@ P- erf: P0: P0는 GPU가 최대 성능(Maximum Performance) 상태로 작동하�
 
 결론: nvidia-smi는 "내 GPU가 지금 놀지 않고 열심히 일하고 있는가?" 라는 질문에 "네, 거의 모든 힘을 다해 일하고 있습니다!" 라고 답해주고 있습니다.
 ```
+
+###
+```bash
+$ pdm run tensorboard --logdir ./note/fineTuning/specialtoken/tensorboard/logs
+```
+- https://github.com/ppabam/king-kogpt2/issues/2
+![Image](https://github.com/user-attachments/assets/47e312ef-20c2-4f01-80f5-c3ea956864dd)
+

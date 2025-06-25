@@ -166,3 +166,5 @@ note/my_roh_gpt2_final/
 note/my_roh_gpt2_results/
 note/all_presidents_gpt2_results/
 note/all_presidents_gpt2_final/
+note/fineTuning/
+!note/fineTuning/specialtoken/tensorboard/logs/
