@@ -3,6 +3,10 @@ import bentoml
 from bentoml.io import JSON
 from pydantic import BaseModel
 
+bento_image = bentoml.images.Image(python_version="3.11").python_packages(
+    "torch", "transformers", "pydantic"
+)
+
 # 1. API 입력 데이터의 형식을 Pydantic 모델로 명확하게 정의합니다.
 # 이렇게 하면 입력 데이터 검증과 자동 문서 생성이 쉬워집니다.
 class GenerationInput(BaseModel):
@@ -13,11 +17,14 @@ class GenerationInput(BaseModel):
 # 2. 이전에 저장한 모델을 가져옵니다.
 # 최신 BentoML에서는 모델을 Runner로 감싸는 것을 권장하지만,
 # 이전 버전과의 호환성을 위해 현재 코드 스타일을 유지하며 수정합니다.
-@bentoml.service
+@bentoml.service(
+    image=bento_image,
+    resources={"cpu": "4"},  # 예시 리소스 설정
+)
 class PresidentGPTEndpoint: # 클래스 이름 변경 (선택사항)
     def __init__(self) -> None:
         # 이 부분은 기존과 동일합니다.
-        model_ref = bentoml.models.get("president_gpt2_finetuned:latest")
+        model_ref = bentoml.models.get("president_gpt_endpoint:latest")
         
         # 모델과 토크나이저를 메모리에 로드합니다.
         self.model = bentoml.transformers.load_model(model_ref)
