@@ -1,10 +1,12 @@
 # king-kogpt2
 
 ### Docs
-- [Gemini](https://g.co/gemini/share/f4a9a21f945b)
+- [Gemini](https://g.co/gemini/share/3148f6b16486)
+- [GPT](https://chatgpt.com/share/685b7523-9d98-800b-bd6a-8ef853bf1a3a)
 - [Pytorch 설치 - CUDA Toolkit, cuDNN 설치](https://stat-thon.tistory.com/104)
 - [대통령 연설문](https://pypi.org/project/president-speech/)
 - [PyTorch 딥러닝 챗봇](https://wikidocs.net/book/7439)
+- [bentoml](https://docs.bentoml.com/en/latest/get-started/hello-world.html)
 
 ### Gemini
 - https://g.co/gemini/share/85788e6bcaea
