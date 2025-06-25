@@ -1,0 +1,8 @@
+note/
+*.pt
+*.safetensors
+*.ckpt
+*.log
+*.csv
+*.jsonl
+!note/fineTuning/specialtoken/tensorboard/all_presidents_gpt2_final

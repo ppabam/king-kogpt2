@@ -1,0 +1,9 @@
+service: "service:TextGeneration"
+labels:
+  owner: tom
+  project: kogpt2-president
+python:
+  packages:
+    - torch
+    - transformers
+    - bentoml

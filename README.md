@@ -54,10 +54,52 @@ P- erf: P0: P0는 GPU가 최대 성능(Maximum Performance) 상태로 작동하�
 결론: nvidia-smi는 "내 GPU가 지금 놀지 않고 열심히 일하고 있는가?" 라는 질문에 "네, 거의 모든 힘을 다해 일하고 있습니다!" 라고 답해주고 있습니다.
 ```
 
-###
+### Tensorboard
 ```bash
 $ pdm run tensorboard --logdir ./note/fineTuning/specialtoken/tensorboard/logs
 ```
 - https://github.com/ppabam/king-kogpt2/issues/2
 ![Image](https://github.com/user-attachments/assets/47e312ef-20c2-4f01-80f5-c3ea956864dd)
+
+### Bentoml
+```
+$ bentoml models list
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+ Tag                                        Module                Size        Creation Time       
+ president_gpt2_finetuned:6hzqjtcrn6odcaav  bentoml.transformers  479.12 MiB  2025-06-25 11:56:09 
+
+
+ $ pdm run bentoml build
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+WARNING: File size is larger than 10MiB: note/fineTuning/specialtoken/tensorboard/all_presidents_gpt2_final/model.safetensors
+INFO: Adding BentoML requirement to the image: bentoml==1.4.16.
+INFO: Locking PyPI package versions.
+
+██████╗ ███████╗███╗   ██╗████████╗ ██████╗ ███╗   ███╗██╗
+██╔══██╗██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗████╗ ████║██║
+██████╔╝█████╗  ██╔██╗ ██║   ██║   ██║   ██║██╔████╔██║██║
+██╔══██╗██╔══╝  ██║╚██╗██║   ██║   ██║   ██║██║╚██╔╝██║██║
+██████╔╝███████╗██║ ╚████║   ██║   ╚██████╔╝██║ ╚═╝ ██║███████╗
+╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝╚══════╝
+
+Successfully built Bento(tag="text_generation:4ilkr6srowodcaav").
+
+Next steps: 
+
+* Deploy to BentoCloud:
+    $ bentoml deploy text_generation:4ilkr6srowodcaav -n ${DEPLOYMENT_NAME}
+
+* Update an existing deployment on BentoCloud:
+    $ bentoml deployment update --bento text_generation:4ilkr6srowodcaav ${DEPLOYMENT_NAME}
+
+* Containerize your Bento with `bentoml containerize`:
+    $ bentoml containerize text_generation:4ilkr6srowodcaav 
+
+* Push to BentoCloud with `bentoml push`:
+    $ bentoml push text_generation:4ilkr6srowodcaav
+
+$ bentoml serve service:TextGeneration
+```
 
