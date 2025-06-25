@@ -1,4 +1,4 @@
-service: "service:TextGeneration"
+service: "service:PresidentGPTEndpoint" # 수정한 클래스 이름으로 변경
 labels:
   owner: tom
   project: kogpt2-president
@@ -7,3 +7,4 @@ python:
     - torch
     - transformers
     - bentoml
+    - pydantic  # pydantic을 추가해줍니다.

@@ -73,6 +73,8 @@ $ bentoml models list
  $ pdm run bentoml build
 /home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/bentoml/io.py:7: BentoMLDeprecationWarning: `bentoml.io` is deprecated since BentoML v1.4 and will be removed in a future version. Please upgrade to new style IO types instead.
+  warn_deprecated(
 WARNING: File size is larger than 10MiB: note/fineTuning/specialtoken/tensorboard/all_presidents_gpt2_final/model.safetensors
 INFO: Adding BentoML requirement to the image: bentoml==1.4.16.
 INFO: Locking PyPI package versions.
@@ -84,22 +86,81 @@ INFO: Locking PyPI package versions.
 ██████╔╝███████╗██║ ╚████║   ██║   ╚██████╔╝██║ ╚═╝ ██║███████╗
 ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝╚══════╝
 
-Successfully built Bento(tag="text_generation:4ilkr6srowodcaav").
+Successfully built Bento(tag="president_gpt_endpoint:oy6nujsro6odcaav").
 
 Next steps: 
 
 * Deploy to BentoCloud:
-    $ bentoml deploy text_generation:4ilkr6srowodcaav -n ${DEPLOYMENT_NAME}
+    $ bentoml deploy president_gpt_endpoint:oy6nujsro6odcaav -n ${DEPLOYMENT_NAME}
 
 * Update an existing deployment on BentoCloud:
-    $ bentoml deployment update --bento text_generation:4ilkr6srowodcaav ${DEPLOYMENT_NAME}
+    $ bentoml deployment update --bento president_gpt_endpoint:oy6nujsro6odcaav ${DEPLOYMENT_NAME}
 
 * Containerize your Bento with `bentoml containerize`:
-    $ bentoml containerize text_generation:4ilkr6srowodcaav 
+    $ bentoml containerize president_gpt_endpoint:oy6nujsro6odcaav 
 
 * Push to BentoCloud with `bentoml push`:
-    $ bentoml push text_generation:4ilkr6srowodcaav
-
-$ bentoml serve service:TextGeneration
+    $ bentoml push president_gpt_endpoint:oy6nujsro6odcaav 
+king-kogpt2-3.11 👻  king-kogpt2  ↱ 0.3/BentoML ±  pdm run bentoml serve president_gpt_endpoint:oy6nujsro6odcaav
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/bentoml/io.py:7: BentoMLDeprecationWarning: `bentoml.io` is deprecated since BentoML v1.4 and will be removed in a future version. Please upgrade to new style IO types instead.
+  warn_deprecated(
+2025-06-25T12:50:46+0900 [INFO] [cli] Starting production HTTP BentoServer from "president_gpt_endpoint:oy6nujsro6odcaav" listening on http://localhost:3000 (Press CTRL+C to quit)
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/fs/__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  __import__("pkg_resources").declare_namespace(__name__)  # type: ignore
+/home/tom/code/king-kogpt2/.venv/lib/python3.11/site-packages/bentoml/io.py:7: BentoMLDeprecationWarning: `bentoml.io` is deprecated since BentoML v1.4 and will be removed in a future version. Please upgrade to new style IO types instead.
+  warn_deprecated(
+/home/tom/bentoml/bentos/president_gpt_endpoint/oy6nujsro6odcaav/src/service.py:23: BentoMLDeprecationWarning: `bentoml.transformers` is deprecated since v1.4 and will be removed in a future version.
+  self.model = bentoml.transformers.load_model(model_ref)
+Model and tokenizer loaded successfully on 'cuda'
+2025-06-25T12:50:52+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] Service PresidentGPTEndpoint initialized
+2025-06-25T12:50:57+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59458 (scheme=http,method=GET,path=/,type=,length=) (status=200,type=text/html; charset=utf-8,length=2945) 7.210ms (trace=0437f3e314a487421e156e32f0280eaa,span=e679e58cc1a2684c,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:50:57+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59470 (scheme=http,method=GET,path=/static_content/index.css,type=,length=) (status=200,type=text/css; charset=utf-8,length=1127) 5.904ms (trace=f705a6bbf35b1d1528f222f9bc0507c5,span=fdc21ff745f7d9ce,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:50:57+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59458 (scheme=http,method=GET,path=/static_content/swagger-ui.css,type=,length=) (status=200,type=text/css; charset=utf-8,length=152059) 9.545ms (trace=1897e655c461b36d2e53b71530d29aa9,span=d2ece211929969eb,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:50:57+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59458 (scheme=http,method=GET,path=/static_content/swagger-ui-standalone-preset.js,type=,length=) (status=200,type=text/javascript; charset=utf-8,length=230777) 5.577ms (trace=30d33cde1b5c6238d3cb5694da0e21c9,span=6855822cfc1a87f3,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:50:57+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59458 (scheme=http,method=GET,path=/static_content/swagger-initializer.js,type=,length=) (status=200,type=text/javascript; charset=utf-8,length=331) 4.364ms (trace=7fe3aead5f0c405de9108cc8ee3c7914,span=e97384cc7da73002,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:50:57+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59470 (scheme=http,method=GET,path=/static_content/swagger-ui-bundle.js,type=,length=) (status=200,type=text/javascript; charset=utf-8,length=1415333) 24.507ms (trace=2d52e9e9e81bfec370550b86a8eb63f1,span=c326b86082ccccc9,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:50:57+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59470 (scheme=http,method=GET,path=/docs.json,type=,length=) (status=200,type=application/json,length=10874) 25.720ms (trace=6a3a1748679c5edca6b442ed5dd78e18,span=60858c598d000e2e,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:50:58+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59458 (scheme=http,method=GET,path=/static_content/favicon-dark-32x32.png,type=,length=) (status=200,type=image/png,length=654) 3.019ms (trace=e38d9ea3de7437598e6ed2a581fca049,span=e471747b09e961a2,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:51:50+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:59474 (scheme=http,method=POST,path=/generate,type=application/json,length=114) (status=200,type=application/json,length=1689) 1357.973ms (trace=e8ae55d2183e263e37be7f4e0eb56340,span=c9c25e5eb566860c,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:52:09+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:52732 (scheme=http,method=POST,path=/generate,type=application/json,length=114) (status=200,type=application/json,length=1732) 973.580ms (trace=160e9c045007ed916fd6df8c2ebdd748,span=daa9394ddff07130,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:52:27+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:52746 (scheme=http,method=POST,path=/generate,type=application/json,length=114) (status=200,type=application/json,length=1760) 1007.100ms (trace=5098c7e43fdca9b88c3008c6a827663d,span=f03b967fa627c03e,sampled=0,service.name=PresidentGPTEndpoint)
+2025-06-25T12:52:40+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] 127.0.0.1:35858 (scheme=http,method=POST,path=/generate,type=application/json,length=114) (status=200,type=application/json,length=1714) 831.686ms (trace=965559346ce32bf24975b83f9142b16f,span=959ef493bb74cf68,sampled=0,service.name=PresidentGPTEndpoint)
+^C2025-06-25T12:53:02+0900 [INFO] [entry_service:PresidentGPTEndpoint:1] Service instance cleanup finalized
 ```
 
+```bash
+$ curl -X 'POST' \
+  'http://localhost:3000/generate' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "input_data": {
+    "president_name": "전두환",
+    "prompt_text": "올림픽",
+    "max_length": 128
+  }
+}'
+{"president_name": "\uc804\ub450\ud658", "prompt_text": "\uc62c\ub9bc\ud53d", "full_generated_text": "<|\uc804\ub450\ud658|> \uc62c\ub9bc\ud53d\uc758 \uc0ac\uc0c1 \ucd5c\uace0\uc758 \uacbd\uae30\ub85c \uae30\ub85d\ub418\uc5c8\uc73c\uba70, \uac01\uacc4\uac01\uce35\uc758 \uc218\ub9ce\uc740 \uc120\uc218\ub2e8\uacfc \uad00\uad11\uac1d\ub4e4\uc774 \uc624\uac08 \ub54c\ub9c8\ub2e4 \uc6b0\ub9ac\uc758 \uc790\ub791\uc2a4\ub7ec\uc6b4 \ubaa8\uc2b5\uc744 \uc720\uac10\uc5c6\uc774 \ubcf4\uc5ec\uc8fc\uc5c8\uc2b5\ub2c8\ub2e4.\uc774\uc81c \uc6b0\ub9ac\ub294 \ub2e4\uc2dc \ud55c\ubc88 \uc138\uacc4\uc18d\uc758 \ud55c\uad6d, \uc774 \uc138\uacc4\uc5d0 \ub118\uce58\ub294 \uc601\uad11\ub41c \uad6d\uac00\ub97c \uac74\uc124\ud558\uace0\uc790 \ud569\ub2c8\ub2e4.\uc6b0\ub9ac\ub294 \uc774\ub97c \uc704\ud574 \ubaa8\ub4e0 \uad6d\ubbfc\uc774 \ud63c\uc5f0\uc77c\uccb4\uac00 \ub418\uc5b4 21\uc138\uae30\ub97c \ud5a5\ud558\uc5ec \ub540\ud758\ub824 \uc77c\ud558\uace0 \ub178\ub825\ud574 \ub098\uac08 \uac83\uc785\ub2c8\ub2e4.\uad6d\ubbfc\uc758 \uc815\ubd80 \uc774\ub798 \uacbd\uc81c\ubd84\uc57c\uc758 \uad6c\uc870\uc870\uc815\uc740 \uc5b4\ub290 \ub098\ub77c\uc5d0\uc11c\ub098 \ucd94\uc9c4\ub418\uace0 \uc788\uc2b5\ub2c8\ub2e4.\uadf8\ub7ec\ub098 \uc9c0\uae08 \uc5ec\ub7ec \uac00\uc9c0 \uc5b4\ub824\uc6c0\uc5d0 \ubd09\ucc29\ud558\uc5ec \uc6b0\ub9ac\uac00 \uc55e\uc73c\ub85c \uac08 \uae38\uc740 \uba40\uace0 \ud5d8\ud569\ub2c8\ub2e4.\uc6b0\ub9ac\uac00 \ud574\uc57c \ud560 \uc77c\uc740 \ub354 \ub9ce\uc740 \uc77c\uc790\ub9ac\uc640 \uc18c\ub4dd\uc99d\ub300\ub97c \uc774\ub8e9\ud558\uae30 \uc704\ud55c \uc0dd\uc0b0\uc801 \ud22c\uc790\ud655\ub300, \ub178\uc0ac\uad00\uacc4\uc758 \uc548\uc815, \uadf8\ub9ac\uace0 \ud658\uacbd\uce5c\ud654\uc801\uc778 \uae30\uc5c5"}%
+
+$ curl -X 'POST' \
+'http://localhost:3000/generate' \
+-H 'accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+"input_data": {
+  "president_name": "전두환",
+  "prompt_text": "올림픽",
+  "max_length": 128
+}
+}' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1833  100  1729  100   104   1737    104  0:00:01 --:--:--  0:00:01  1840
+{
+  "president_name": "전두환",
+  "prompt_text": "올림픽",
+  "full_generated_text": "<|전두환|> 올림픽에서도 금메달을 딴 우리 선수들이 자랑스럽고 마음 든든하다는 생각이 듭니다. 여러분이 이 영광을 함께 누리고 나갑시다. ‘선진’이라는 말의 의미를 다시 한 번 되새기면서 선수 모두의 건투를 기원합니다. 감사합니다.\n\n<|김영삼|> 친애하는 국민여러분!오늘, 우리는 광복 68주년을 맞이했습니다.이것은 민족사의 장래를 위해 매우 의미있게 평가할 만하다고 생각하며, 또한 우리의 앞날을 위해서도 반드시 성취할 것을 확신하기 때문입니다.그동안 정부는 광복과 동시에 수립된 첫 정부로서 건국 후 최초의 민주적 정부를 완성시켰으며, 지난 87년 대통령 선거와 1995년 대통령선거 등 모든 과정을 민주적으로 치렀으며, 그 과정에서"
+}
+```
